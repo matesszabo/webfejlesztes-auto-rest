@@ -26,6 +26,10 @@ public class AutoEntity {
     @Column(name = "teljesitmeny")
     private Integer teljesitmeny;
 
+    @ManyToOne
+    @JoinColumn(name = "tulajdonos", nullable = true)
+    private TulajdonosEntity tulajdonos;
+
     public AutoEntity() {
     }
 
@@ -92,6 +96,14 @@ public class AutoEntity {
 
     public void setTeljesitmeny(Integer teljesitmeny) {
         this.teljesitmeny = teljesitmeny;
+    }
+
+    public TulajdonosEntity getTulajdonos() {
+        return tulajdonos;
+    }
+
+    public void setTulajdonos(TulajdonosEntity tulajdonos) {
+        this.tulajdonos = tulajdonos;
     }
 
     @Override
