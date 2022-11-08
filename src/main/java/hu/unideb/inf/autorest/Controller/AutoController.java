@@ -1,9 +1,11 @@
 package hu.unideb.inf.autorest.Controller;
 
+import hu.unideb.inf.autorest.DTO.AutoDto;
 import hu.unideb.inf.autorest.Entity.AutoEntity;
 import hu.unideb.inf.autorest.Entity.TulajdonosEntity;
 import hu.unideb.inf.autorest.Repository.AutoRepository;
 import hu.unideb.inf.autorest.Repository.TulajdonosRepository;
+import hu.unideb.inf.autorest.Service.AutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,15 +25,23 @@ public class AutoController {
     @Autowired
     TulajdonosRepository tulajdonosRepository;
 
+    @Autowired
+    AutoService autoService;
+
     @GetMapping("/autok")
     public ResponseEntity<List<AutoEntity>> getAllAuto() {
         //return new ResponseEntity<>(Arrays.asList(new AutoEntity(1, "Honda", "Jazz", "KJK-111", "piros", 98)), HttpStatus.OK);
         return new ResponseEntity<>(autoRepository.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/auto")
+    /*@GetMapping("/auto")
     public ResponseEntity<AutoEntity> getAuto(@RequestParam(required = true) long id) {
         return new ResponseEntity<>(autoRepository.getReferenceById(id), HttpStatus.OK);
+    }*/
+
+    @GetMapping("/auto")
+    public ResponseEntity<AutoDto> getAutoDto(@RequestParam(required = true) long id) {
+        return new ResponseEntity<>(autoService.getAutoById(id), HttpStatus.OK);
     }
 
     @PostMapping("/auto")
