@@ -62,10 +62,11 @@ public class AutoController {
     public ResponseEntity initDb() {
         try {
             tulajdonosRepository.save(new TulajdonosEntity("Kiss József", "ZERH01PA", Date.from(Instant.now())));
-            autoRepository.save(new AutoEntity("Honda", "Jazz", "KJK-111", "piros", 98));
+            //autoRepository.save(new AutoEntity("Honda", "Jazz", "KJK-111", "piros", 98));
 
             TulajdonosEntity t1 = tulajdonosRepository.getReferenceById(1l);
-            AutoEntity a1 = new AutoEntity("Honda", "Jazz", "KJK-111", "piros", 98);
+            AutoEntity a1 = new AutoEntity("Honda", "Jazz", "KJK-111",
+                    "piros", 98);
             a1.setTulajdonos(t1);
             autoRepository.save(a1);
         } catch (Exception e) {
