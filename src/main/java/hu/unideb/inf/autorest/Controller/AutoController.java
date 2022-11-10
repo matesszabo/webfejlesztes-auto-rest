@@ -1,9 +1,11 @@
 package hu.unideb.inf.autorest.Controller;
 
+import hu.unideb.inf.autorest.Dto.AutoDto;
 import hu.unideb.inf.autorest.Entity.AutoEntity;
 import hu.unideb.inf.autorest.Entity.TulajdonosEntity;
 import hu.unideb.inf.autorest.Repository.AutoRepository;
 import hu.unideb.inf.autorest.Repository.TulajdonosRepository;
+import hu.unideb.inf.autorest.Service.AutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,9 @@ import java.util.List;
 public class AutoController {
 
     @Autowired
+    AutoService autoService;
+
+    @Autowired
     AutoRepository autoRepository;
 
     @Autowired
@@ -30,8 +35,8 @@ public class AutoController {
     }
 
     @GetMapping("/auto")
-    public ResponseEntity<AutoEntity> getAuto(@RequestParam(required = true) long id) {
-        return new ResponseEntity<>(autoRepository.getReferenceById(id), HttpStatus.OK);
+    public ResponseEntity<AutoDto> getAuto(@RequestParam(required = true) long id) {
+        return new ResponseEntity<>(autoService.getById(id), HttpStatus.OK);
     }
 
     @PostMapping("/auto")
