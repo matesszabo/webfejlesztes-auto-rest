@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
@@ -79,6 +81,12 @@ public class AutoController {
         }
 
         return new ResponseEntity(HttpStatus.CREATED);
+    }
+
+    @GetMapping("/logout")
+    public ResponseEntity logout(HttpServletRequest request, HttpServletResponse response) {
+
+        return new ResponseEntity(HttpStatus.OK);
     }
 
 
